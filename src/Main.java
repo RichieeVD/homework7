@@ -1,15 +1,127 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        // Задание 1
+        int firstFriday = 3; // Предположим, первая пятница выпала на 3-е число
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        for (int currentDay = firstFriday; currentDay <= 31; currentDay += 7) {
+            System.out.println("Сегодня пятница, " + currentDay + "-е число. Необходимо подготовить отчет");
+
         }
+
+        // Задание 2
+        int finish = 42195;
+        int step = 500;
+
+          // do-while
+        System.out.println("--- Версия с do-while ---");
+        int distanceDoWhile = 0;
+        do {
+            int remaining = finish - distanceDoWhile;
+            System.out.println("Держитесь! Осталось " + remaining + " метров");
+            distanceDoWhile += step;
+        } while (distanceDoWhile <= finish);
+
+            // for
+        System.out.println("\n--- Версия с for ---");
+        for (int distanceFor = 0; distanceFor <= finish; distanceFor += step) {
+            int remaining = finish - distanceFor;
+            System.out.println("Держитесь! Осталось " + remaining + " метров");
+        }
+
+        // Задание 3
+        int budget = 1000;
+        int dailyCost = 100;
+
+            // while
+        System.out.println("--- Расчет через while ---");
+        int dayWhile = 0;
+        int currentBudgetWhile = budget;
+
+        while (currentBudgetWhile >= dailyCost) {
+            dayWhile++;
+
+            if (dayWhile % 5 == 0) {
+                System.out.println("День " + dayWhile + " — акция! Парковка бесплатная.");
+                continue; // Пропускаем списание денег и идем на следующий круг
+            }
+
+            currentBudgetWhile -= dailyCost;
+        }
+        System.out.println("Бюджета хватит на " + dayWhile + " дней.");
+
+            // for
+        System.out.println("\n--- Расчет через for ---");
+        int currentBudgetFor = budget;
+        int dayFor = 1;
+
+        for (; currentBudgetFor >= dailyCost; dayFor++) {
+            if (dayFor % 5 == 0) {
+                System.out.println("День " + dayFor + " — акция! Парковка бесплатная.");
+                continue;
+            }
+            currentBudgetFor -= dailyCost;
+        }
+        System.out.println("Бюджета хватит на " + (dayFor - 1) + " дней.");
+
+        // Задание 4
+        int month = 0;
+        double total = 0; // Используем double, так как проценты — это дробные числа
+        int monthlyContribution = 15000;
+        int targetAmount = 12000000;
+
+        while (true) {
+            month++;
+            total += monthlyContribution;
+
+            // Каждые полгода (кратные 6) банк начисляет 7%
+            if (month % 6 == 0) {
+                total *= 1.07; // Умножение на 1.07 — это прибавление 7%
+            }
+
+            System.out.println("Месяц " + month + ", сумма накоплений равна " + String.format("%.2f", total) + " рублей");
+
+            // Если цель достигнута — выходим из цикла
+            if (total >= targetAmount) {
+                break;
+            }
+        }
+        System.out.println("Итого понадобилось месяцев: " + month);
+
+        // Задание 5
+        int charge = 20;
+        int minute = 0;
+        int overheats = 0;
+
+        while (charge < 100) {
+            minute++;
+
+            // Проверка на перегрев каждые 10 минут
+            if (minute % 10 == 0) {
+                overheats++;
+                System.out.println("Минута " + minute + ": Перегрев! Пауза 2 минуты. Всего перегревов: " + overheats);
+
+                if (overheats > 3) {
+                    System.out.println("Зарядка прекращена. Текущий заряд: " + charge + "%");
+                    break;
+                }
+
+                minute += 2; // Пропускаем 2 минуты зарядки (время идет, заряд — нет)
+                continue;    // Возвращаемся в начало цикла, не прибавляя заряд в эту итерацию
+            }
+
+            // Обычная зарядка (если нет перегрева)
+            charge += 2;
+
+            // Если в процессе зарядки достигли 100%, прерываем цикл
+            if (charge >= 100) {
+                charge = 100; // Ограничиваем максимум
+                break;
+            }
+        }
+
+        if (overheats <= 3) {
+            System.out.println("Зарядка завершена успешно. Текущий заряд: " + charge + "%");
+        }
+        System.out.println("Время зарядки составило " + minute + " минут.");
     }
 }
