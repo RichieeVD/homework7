@@ -27,5 +27,40 @@ public class Main {
             int remaining = finish - distanceFor;
             System.out.println("Держитесь! Осталось " + remaining + " метров");
         }
+
+        // Задание 3
+        int budget = 1000;
+        int dailyCost = 100;
+
+            // while
+        System.out.println("--- Расчет через while ---");
+        int dayWhile = 0;
+        int currentBudgetWhile = budget;
+
+        while (currentBudgetWhile >= dailyCost) {
+            dayWhile++;
+
+            if (dayWhile % 5 == 0) {
+                System.out.println("День " + dayWhile + " — акция! Парковка бесплатная.");
+                continue; // Пропускаем списание денег и идем на следующий круг
+            }
+
+            currentBudgetWhile -= dailyCost;
+        }
+        System.out.println("Бюджета хватит на " + dayWhile + " дней.");
+
+            // for
+        System.out.println("\n--- Расчет через for ---");
+        int currentBudgetFor = budget;
+        int dayFor = 1;
+
+        for (; currentBudgetFor >= dailyCost; dayFor++) {
+            if (dayFor % 5 == 0) {
+                System.out.println("День " + dayFor + " — акция! Парковка бесплатная.");
+                continue;
+            }
+            currentBudgetFor -= dailyCost;
+        }
+        System.out.println("Бюджета хватит на " + (dayFor - 1) + " дней.");
     }
 }
