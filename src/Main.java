@@ -7,5 +7,25 @@ public class Main {
             System.out.println("Сегодня пятница, " + currentDay + "-е число. Необходимо подготовить отчет");
 
         }
+
+        // Задание 2
+        int finish = 42195;
+        int step = 500;
+
+          // do-while
+        System.out.println("--- Версия с do-while ---");
+        int distanceDoWhile = 0;
+        do {
+            int remaining = finish - distanceDoWhile;
+            System.out.println("Держитесь! Осталось " + remaining + " метров");
+            distanceDoWhile += step;
+        } while (distanceDoWhile <= finish);
+
+            // for
+        System.out.println("\n--- Версия с for ---");
+        for (int distanceFor = 0; distanceFor <= finish; distanceFor += step) {
+            int remaining = finish - distanceFor;
+            System.out.println("Держитесь! Осталось " + remaining + " метров");
+        }
     }
 }
