@@ -62,5 +62,29 @@ public class Main {
             currentBudgetFor -= dailyCost;
         }
         System.out.println("Бюджета хватит на " + (dayFor - 1) + " дней.");
+
+        // Задание 4
+        int month = 0;
+        double total = 0; // Используем double, так как проценты — это дробные числа
+        int monthlyContribution = 15000;
+        int targetAmount = 12000000;
+
+        while (true) {
+            month++;
+            total += monthlyContribution;
+
+            // Каждые полгода (кратные 6) банк начисляет 7%
+            if (month % 6 == 0) {
+                total *= 1.07; // Умножение на 1.07 — это прибавление 7%
+            }
+
+            System.out.println("Месяц " + month + ", сумма накоплений равна " + String.format("%.2f", total) + " рублей");
+
+            // Если цель достигнута — выходим из цикла
+            if (total >= targetAmount) {
+                break;
+            }
+        }
+        System.out.println("Итого понадобилось месяцев: " + month);
     }
 }
