@@ -86,5 +86,42 @@ public class Main {
             }
         }
         System.out.println("Итого понадобилось месяцев: " + month);
+
+        // Задание 5
+        int charge = 20;
+        int minute = 0;
+        int overheats = 0;
+
+        while (charge < 100) {
+            minute++;
+
+            // Проверка на перегрев каждые 10 минут
+            if (minute % 10 == 0) {
+                overheats++;
+                System.out.println("Минута " + minute + ": Перегрев! Пауза 2 минуты. Всего перегревов: " + overheats);
+
+                if (overheats > 3) {
+                    System.out.println("Зарядка прекращена. Текущий заряд: " + charge + "%");
+                    break;
+                }
+
+                minute += 2; // Пропускаем 2 минуты зарядки (время идет, заряд — нет)
+                continue;    // Возвращаемся в начало цикла, не прибавляя заряд в эту итерацию
+            }
+
+            // Обычная зарядка (если нет перегрева)
+            charge += 2;
+
+            // Если в процессе зарядки достигли 100%, прерываем цикл
+            if (charge >= 100) {
+                charge = 100; // Ограничиваем максимум
+                break;
+            }
+        }
+
+        if (overheats <= 3) {
+            System.out.println("Зарядка завершена успешно. Текущий заряд: " + charge + "%");
+        }
+        System.out.println("Время зарядки составило " + minute + " минут.");
     }
 }
